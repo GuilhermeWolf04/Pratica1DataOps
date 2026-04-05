@@ -4,5 +4,7 @@ __pycache__/
 *.duckdb
 target/
 dbt_packages/
+.env
 .ipynb_checkpoints/
 .DS_Store
+data/raw/*.csv
