@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+from concurrent.futures import ThreadPoolExecutor
 
 from temporalio.client import Client
 from temporalio.worker import Worker
@@ -20,6 +21,7 @@ async def main() -> None:
         client,
         task_queue="orders-task-queue",
         workflows=[OrdersPipelineWorkflow],
+        activity_executor=ThreadPoolExecutor(max_workers=4),
         activities=[
             generate_csv_activity,
             load_csv_to_mongodb_activity,
